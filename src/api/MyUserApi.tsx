@@ -2,7 +2,7 @@
 import { User } from "@/types"; // Importing User type from "@/types"
 import { useAuth0 } from "@auth0/auth0-react"; // Importing useAuth0 hook from auth0-react package
 import { useMutation, useQuery } from "react-query"; // Importing useMutation and useQuery hooks from react-query package
-import { toast } from "sonner"; // Importing toast function from sonner library
+import { toast } from 'sonner'; // Importing toast function from sonner library
 
 // Retrieve API_BASE_URL from environment variables
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -45,6 +45,11 @@ export const useGetMyUser = () => {
     return { currentUser, isLoading };
 };
 
+type CreateUserRequest = {
+    auth0Id: string;
+    email: string;
+  };
+  
 // Custom hook to create a new user
 export const useCreateMyUser = () => {
     // Destructure getAccessTokenSilently from useAuth0 hook
@@ -82,13 +87,21 @@ export const useCreateMyUser = () => {
     };
 };
 
+
+type UpdateMyUserRequest = {
+    name: string;
+    addressLine1: string;
+    city: string;
+    country: string;
+  };
+  
 // Custom hook to update user information
 export const useUpdateMyUser = () => {
     // Destructure getAccessTokenSilently from useAuth0 hook
     const { getAccessTokenSilently } = useAuth0();
 
     // Function to update user information
-    const updateMyUserRequest = async (formData: updateMyUserRequest) => {
+    const updateMyUserRequest = async (formData: UpdateMyUserRequest) => {
         // Get access token using getAccessTokenSilently
         const accessToken = await getAccessTokenSilently();
         // Send request to update user information with provided data
