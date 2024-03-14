@@ -1,6 +1,8 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+//children is going to contain all the components that are nested inside the layout tag when we define the layout
+
 type Props = {
   children: React.ReactNode
   showHero?:boolean

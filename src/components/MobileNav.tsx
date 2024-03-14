@@ -11,20 +11,21 @@ const MobileNav = () => {
         <SheetTrigger>
             <Menu className="text-orange-500"/>
         </SheetTrigger>
+
         <SheetContent className="space-y-5">
-            <SheetTitle> 
-              {isAuthenticated?<span className="flex items-center font-bold gap-2">
-                <CircleUserRound className="text-orange-500"/>{user?.email}
-              </span>:<span>welcome to the MernEats.com !!</span>}
-            
-            </SheetTitle>
-            < Separator/>
-            <SheetDescription className="flex flex-col gap-4">
-              {isAuthenticated?(<MobileNavLinks/>):(
-                   <Button onClick={()=>loginWithRedirect()}className="flex-1 font-bold bg-orange-500">Log In</Button>
-              )}
-           
-        </SheetDescription> 
+              <SheetTitle> 
+                  {isAuthenticated?(<span className="flex items-center font-bold gap-2">
+                    <CircleUserRound className="text-orange-500"/>{user?.email}</span>
+                  ):(
+                  <span>welcome to the MernEats.com !!</span>)}
+              </SheetTitle>
+              
+              < Separator/>
+              <SheetDescription className="flex flex-col gap-4">
+                  {isAuthenticated?(<MobileNavLinks/>):(
+                      <Button onClick={()=>loginWithRedirect()}className="flex-1 font-bold bg-orange-500">Log In</Button>
+                  )}
+              </SheetDescription> 
         </SheetContent>
 
        
@@ -34,3 +35,11 @@ const MobileNav = () => {
 }
 
 export default MobileNav;
+
+
+/*
+  <SheetTrigger>
+            <Menu className="text-orange-500"/>    //this is triggering the sheet to appear {burger}
+  </SheetTrigger>
+
+*/

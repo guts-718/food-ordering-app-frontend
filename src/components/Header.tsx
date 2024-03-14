@@ -9,10 +9,14 @@ const Header = () => {
         <Link to="/" className="text-3xl font-bold tracking-tight text-orange-500">
             MernEats.com
         </Link>
+        
+         {/* for medium and bigger screen this will remain hidden */}
         <div className="md:hidden">
             <MobileNav/>
         </div>
-        <div className="hidden md:block">
+
+        {/* initially it will be hidden but from medium onwards it will be block */}
+        <div className="hidden md:block"> 
             <MainNav/>
         </div>
         </div>

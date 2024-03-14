@@ -45,6 +45,7 @@ export const useGetMyUser = () => {
     return { currentUser, isLoading };
 };
 
+// type for the user request. so this type is going to describe all the properties that are needed in the body of the request for it to work 
 type CreateUserRequest = {
     auth0Id: string;
     email: string;
@@ -109,7 +110,7 @@ export const useUpdateMyUser = () => {
             method: "PUT",
             headers: {
                 Authorization: `Bearer ${accessToken}`, // Include authorization token in headers
-                "Content-Type": "application/json", // Specify content type as JSON
+                "Content-Type": "application/json", // tells backend server what type to expect in the body of the request
             },
             body: JSON.stringify(formData), // Convert form data to JSON string and include in request body
         });

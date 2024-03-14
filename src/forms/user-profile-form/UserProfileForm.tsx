@@ -23,7 +23,7 @@ const formSchema = z.object({
   city: z.string().min(1, "City is required"),
   country: z.string().min(1, "Country is required"),
 });
-
+//all this means that we are using zod framework to infer or to automatically determine the type based on the form schema
 export type UserFormData = z.infer<typeof formSchema>;
 
 type Props = {
@@ -33,7 +33,10 @@ type Props = {
   title?: string;
   buttonText?: string;
 };
-
+/*
+ the reason we are passing onSave as a prop into this component is because it means we can do all the API stuffs at the page level and it also means that depending on the situation or requirement that we can pass different functions that 
+ can get called whenever the user submits the form
+*/
 const UserProfileForm = ({
   onSave,
   isLoading,
@@ -41,17 +44,17 @@ const UserProfileForm = ({
   title = "User Profile",
   buttonText = "Submit",
 }: Props) => {
-  const form = useForm<UserFormData>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<UserFormData>({ // it is telling that the typeof our data is going to be UserFormData
+    resolver: zodResolver(formSchema), // it resolves /validates based on zod formSchema
     defaultValues: currentUser,
   });
-
+  // if the page or the component updates then we need to make sure that if we receive a new current user that we'are updating the form again so we use useEffect
   useEffect(() => {
     form.reset(currentUser);
   }, [currentUser, form]);
-
+ // Form -- shadcn form & form --> react hook form
   return (
-    <Form {...form}>
+    <Form {...form}> 
       <form
         onSubmit={form.handleSubmit(onSave)}
         className="space-y-4 bg-gray-50 rounded-lg md:p-10"
