@@ -20,10 +20,9 @@ const Auth0ProviderWithNavigate = ({ children }: Props) => {
   }
 
   // a function which is called when the user gets redirected to our app -- can use (appState?:AppState, user?:User) 
-  const onRedirectCallback = () => {
-      navigate("/auth-callback");
+  const onRedirectCallback = (appState?: AppState) => {
+    navigate(appState?.returnTo || "/auth-callback");
   };
-
   return (
     <Auth0Provider
       domain={domain}
